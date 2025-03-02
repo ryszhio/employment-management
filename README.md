@@ -6,16 +6,16 @@ This is a RESTful API for managing employees, built using Spring Boot. It provid
 This project is just part of me practicing Spring Boot. :)
 
 ## Base URL
+#### For Local Machine
 ```
 http://localhost:8080/api/emp
 ```
-#### For Local Machine
 
+#### For Hosted Machine
 ```
 http://(yourdomain or ip)/api/emp
 e.g. https://rishabkarki.com.np/api/emp
 ```
-# For Hosted Machine
 
 ## Endpoints
 
