@@ -3,6 +3,8 @@
 ## Overview
 This is a RESTful API for managing employees, built using Spring Boot. It provides endpoints to create, retrieve, update, and delete employee records.
 
+This project is just part of me practicing Spring Boot. :)
+
 ## Base URL
 ```
 http://localhost:8080/api/emp
