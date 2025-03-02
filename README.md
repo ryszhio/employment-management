@@ -106,6 +106,3 @@ DELETE /{id}
    mvn spring-boot:run
    ```
 4. Use Postman or any API testing tool to interact with the endpoints.
-
-## Author
-- **Rishab Karki**
