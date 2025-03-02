@@ -13,7 +13,7 @@ http://localhost:8080/api/emp
 
 ```
 http://(yourdomain or ip)/api/emp
-e.g. rishabkarki.com.np/api/emp
+e.g. https://rishabkarki.com.np/api/emp
 ```
 # For Hosted Machine
 
