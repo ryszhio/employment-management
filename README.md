@@ -9,6 +9,12 @@ This project is just part of me practicing Spring Boot. :)
 ```
 http://localhost:8080/api/emp
 ```
+# For Local Machine
+
+```
+http://(yourdomain or ip)/api/emp
+```
+# For Hosted Machine
 
 ## Endpoints
 
