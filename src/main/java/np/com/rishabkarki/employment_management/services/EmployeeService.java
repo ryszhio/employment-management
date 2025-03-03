@@ -1,25 +1,30 @@
 package np.com.rishabkarki.employment_management.services;
 
+import jakarta.persistence.criteria.Predicate;
 import np.com.rishabkarki.employment_management.dto.EmployeeDto;
 import np.com.rishabkarki.employment_management.exceptions.EmployeeNotFoundException;
 import np.com.rishabkarki.employment_management.exceptions.InvalidEmployeeDataException;
-import np.com.rishabkarki.employment_management.model.Department;
 import np.com.rishabkarki.employment_management.model.Employee;
 import np.com.rishabkarki.employment_management.repository.EmployeeRepository;
+import np.com.rishabkarki.employment_management.specification.EmployeeSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    public Employee createEmployee(EmployeeDto employeeDto) {
+    private Employee createEmployee(EmployeeDto employeeDto) {
         if (employeeDto.name() == null || employeeDto.name().trim().isEmpty())
             throw new InvalidEmployeeDataException("No name provided !");
         Employee employee = new Employee(employeeDto);
@@ -49,39 +54,19 @@ public class EmployeeService {
         return employeeRepository.save(new Employee(employeeDto));
     }
 
-    public List<Employee> searchByName(String name) {
-        return employeeRepository.findByNameContainingIgnoreCase(name);
+    public List<Employee> searchEmployee(Map<String, String> filters) {
+        List<Employee> employees = employeeRepository.findAll(EmployeeSpecification.getFilteredEmployees(filters));
+
+        if (employees.isEmpty()) {
+            throw new EmployeeNotFoundException("Searched employee not found!");
+        }
+
+        return employees;
     }
 
-    public List<Employee> searchBySalaryGreaterThan(BigDecimal salary) {
-        return employeeRepository.findBySalaryGreaterThan(salary);
-    }
-
-    public List<Employee> searchBySalaryLessThan(BigDecimal salary) {
-        return employeeRepository.findBySalaryLessThan(salary);
-    }
-
-    public List<Employee> searchByJoinedBefore(LocalDate date) {
-        return employeeRepository.findByJoinedDateBefore(date);
-    }
-
-    public List<Employee> searchByJoinedAfter(LocalDate date) {
-        return employeeRepository.findByJoinedDateAfter(date);
-    }
-
-    public List<Employee> searchByPosition(String position) {
-        return employeeRepository.findByPositionIgnoreCase(position);
-    }
-
-    public List<Employee> searchByDepartment(String department) {
-        return employeeRepository.findByDepartmentIgnoreCase(department);
-    }
-
-    public List<Employee> searchBySalaryBetween(BigDecimal minSalary, BigDecimal maxSalary) {
-        return employeeRepository.findBySalaryBetween(minSalary, maxSalary);
-    }
-
-    public List<Employee> searchByJoinedBetween(LocalDate startDate, LocalDate endDate) {
-        return employeeRepository.findByJoinedDateBetween(startDate, endDate);
+    public List<Employee> createEmployees(List<EmployeeDto> employeeDtos) {
+        return employeeDtos.stream()
+                .map(this::createEmployee)
+                .collect(Collectors.toList());
     }
 }

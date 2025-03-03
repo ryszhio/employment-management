@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/emp")
@@ -22,19 +23,14 @@ public class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<Employee> createEmployee(@RequestBody EmployeeDto employeeDto) {
-        return ResponseEntity.ok(employeeService.createEmployee(employeeDto));
+    public ResponseEntity<List<Employee>> createEmployee(@RequestBody List<EmployeeDto> employeeDtos) {
+        return ResponseEntity.ok(employeeService.createEmployees(employeeDtos));
     }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employeeList = employeeService.getAllEmployees();
         return ResponseEntity.ok(employeeList);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployee(@PathVariable Integer id) {
-        return ResponseEntity.ok(employeeService.getEmployee(id));
     }
 
     @PutMapping("/{id}")
@@ -49,5 +45,10 @@ public class EmployeeController {
 
         employeeRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Employee>> searchEmployee(@RequestParam Map<String, String> params) {
+        return ResponseEntity.ok(employeeService.searchEmployee(params));
     }
 }

@@ -29,6 +29,10 @@ public class Employee {
     @Column(nullable = false)
     private Department department;
 
+    public Employee() {
+
+    }
+
     public Employee(EmployeeDto employeeDto) {
         this.name = employeeDto.name();
         this.joinedDate = employeeDto.joinedDate() != null ? employeeDto.joinedDate() : LocalDate.now();
