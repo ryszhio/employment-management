@@ -62,7 +62,7 @@ GET /search?arg=value
 ***Example:***
 *Query Example*:
 ```
-GET localhost:8080/api/emp/search?name=John
+GET http://localhost:8080/api/emp/search?name=John
 ```
 
 *Output Example*:
