@@ -46,17 +46,38 @@ GET /getAll
 - `200 OK` with a list of all employees.
 
 ---
-### 3. Get Employee by ID
+### 3. Get Employee by Properties
 **Endpoint:**
 ```
-GET /{id}
+GET /search?arg=value
 ```
-**Path Parameter:**
-- `id` (Integer) - The ID of the employee.
+**Request Parameter:**
+- `arguments` (Object) - Property of employee.
+- `value` (Value) - Value of Object.
 
 **Response:**
 - `200 OK` with employee details.
 - `404 Not Found` if the employee does not exist.
+
+***Example:***
+*Query Example*:
+```
+GET http://localhost:8080/api/emp/search?name=John
+```
+
+*Output Example*:
+```json
+[
+	{
+		"id": 12,
+		"name": "John Doe",
+		"joinedDate": "2023-06-15",
+		"salary": 150000.00,
+		"position": "MANAGER",
+		"department": "SALES"
+	}
+]
+```
 
 ---
 ### 4. Update an Employee
