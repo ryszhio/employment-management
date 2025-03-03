@@ -66,7 +66,8 @@ GET localhost:8080/api/emp/search?name=John
 ```
 
 *Output Example*:
-```[
+```json
+[
 	{
 		"id": 12,
 		"name": "John Doe",
