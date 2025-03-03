@@ -48,9 +48,6 @@ public class EmployeeService {
         if (!employeeRepository.existsById(id))
             throw new EmployeeNotFoundException("Employee not found with id: " + id);
 
-        if (employeeDto.name() == null || employeeDto.name().trim().isEmpty())
-            throw new InvalidEmployeeDataException("No name provided !");
-
         return employeeRepository.save(new Employee(employeeDto));
     }
 
