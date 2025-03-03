@@ -49,10 +49,11 @@ GET /getAll
 ### 3. Get Employee by ID
 **Endpoint:**
 ```
-GET /{id}
+GET /search?arg=value
 ```
-**Path Parameter:**
-- `id` (Integer) - The ID of the employee.
+**Request Parameter:**
+- `arguments` (Object) - Property of employee.
+- `value` (Value) - Value of Object.
 
 **Response:**
 - `200 OK` with employee details.
