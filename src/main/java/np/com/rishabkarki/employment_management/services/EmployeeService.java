@@ -1,28 +1,24 @@
 package np.com.rishabkarki.employment_management.services;
 
-import jakarta.persistence.criteria.Predicate;
 import np.com.rishabkarki.employment_management.dto.EmployeeDto;
 import np.com.rishabkarki.employment_management.exceptions.EmployeeNotFoundException;
 import np.com.rishabkarki.employment_management.exceptions.InvalidEmployeeDataException;
 import np.com.rishabkarki.employment_management.model.Employee;
 import np.com.rishabkarki.employment_management.repository.EmployeeRepository;
 import np.com.rishabkarki.employment_management.specification.EmployeeSpecification;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
-    @Autowired
-    private EmployeeRepository employeeRepository;
+
+    private final EmployeeRepository employeeRepository;
+
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     private Employee createEmployee(EmployeeDto employeeDto) {
         if (employeeDto.name() == null || employeeDto.name().trim().isEmpty())

@@ -23,11 +23,11 @@ public class Employee {
 
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private Position position;
+    private np.com.rishabkarki.employment_management.model.Position position;
 
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private Department department;
+    private np.com.rishabkarki.employment_management.model.Department department;
 
     public Employee() {
 
@@ -37,8 +37,8 @@ public class Employee {
         this.name = employeeDto.name();
         this.joinedDate = employeeDto.joinedDate() != null ? employeeDto.joinedDate() : LocalDate.now();
         this.salary = employeeDto.salary() != null ? employeeDto.salary() : BigDecimal.valueOf(10000);
-        this.position = employeeDto.position() != null ? employeeDto.position() : Position.INTERN;
-        this.department = employeeDto.department() != null ? employeeDto.department() : Department.GENERAL;
+        this.position = employeeDto.position() != null ? employeeDto.position() : np.com.rishabkarki.employment_management.model.Position.INTERN;
+        this.department = employeeDto.department() != null ? employeeDto.department() : np.com.rishabkarki.employment_management.model.Department.GENERAL;
     }
 
     public Integer getId() {
@@ -49,19 +49,19 @@ public class Employee {
         this.id = id;
     }
 
-    public Department getDepartment() {
+    public np.com.rishabkarki.employment_management.model.Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(np.com.rishabkarki.employment_management.model.Department department) {
         this.department = department;
     }
 
-    public Position getPosition() {
+    public np.com.rishabkarki.employment_management.model.Position getPosition() {
         return position;
     }
 
-    public void setPosition(Position position) {
+    public void setPosition(np.com.rishabkarki.employment_management.model.Position position) {
         this.position = position;
     }
 

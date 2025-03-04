@@ -11,8 +11,8 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(EmployeeNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
+    @ExceptionHandler(np.com.rishabkarki.employment_management.exceptions.EmployeeNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleEmployeeNotFoundException(np.com.rishabkarki.employment_management.exceptions.EmployeeNotFoundException ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("timestamp", LocalDateTime.now());
         response.put("status", HttpStatus.NOT_FOUND.value());
@@ -22,8 +22,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
-    @ExceptionHandler(InvalidEmployeeDataException.class)
-    public ResponseEntity<Map<String, Object>> handleInvalidEmployeeDataException(InvalidEmployeeDataException ex) {
+    @ExceptionHandler(np.com.rishabkarki.employment_management.exceptions.InvalidEmployeeDataException.class)
+    public ResponseEntity<Map<String, Object>> handleInvalidEmployeeDataException(np.com.rishabkarki.employment_management.exceptions.InvalidEmployeeDataException ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("timestamp", LocalDateTime.now());
         response.put("status", HttpStatus.BAD_REQUEST.value());
