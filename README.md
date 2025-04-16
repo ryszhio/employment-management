@@ -113,11 +113,12 @@ DELETE /{id}
 - `204 No Content` if successful.
 - `404 Not Found` if the employee does not exist.
 
-## Technologies Used
-- Java
+## Package Used
 - Spring Boot
 - Spring Security
 - Spring Data JPA
+
+## Database
 - PostgreSQL
 
 ## Setup Instructions
